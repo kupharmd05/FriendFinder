@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FriendFinder</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div>
+            <h2>Survey Questions</h2>
+            <hr>
+            <h3>About You</h3>
+            <h4>Name (Required)</h4>
+            <input type="text" id="name" class="form-control" required>
+            <hr>
+            <h3>Question 1</h3>
+            <h4>I'm excited to meet new people</h4>
+            <select class="chosen-select" id="q1">
+                <option value="" disabled selected>Chose the closest option</option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <h3>Question 2</h3>
+            <h4>I make friends easily</h4>
+            <select class="chosen-select" id="q2">
+                <option value=""disabled selected>Chose the closest option</option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <h3>Question 3</h3>
+            <h4>I'm an outgoing person</h4>
+            <select class="chosen-select" id="q3">
+                <option value=""disabled selected>Chose the closest option</option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <h3>Question 4</h3>
+            <h4>I prefer a quiet night at home vs. going out</h4>
+            <select class="chosen-select" id="q4">
+                <option value=""disabled selected>Chose the closest option</option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <h3>Question 5</h3>
+            <h4>I prefer steak vs. a hamburger</h4>
+            <select class="chosen-select" id="q5">
+                <option value=""disabled selected>Chose the closest option</option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <h3>Question 6</h3>
+            <h4>I get bored easily</h4>
+            <select class="chosen-select" id="q6">
+                <option value=""disabled selected>Chose the closest option</option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <h3>Question 7</h3>
+            <h4>I like to exercise</h4>
+            <select class="chosen-select" id="q7">
+                <option value=""disabled selected>Chose the closest option</option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <h3>Question 8</h3>
+            <h4>I prefer wine to beer</h4>
+            <select class="chosen-select" id="q8">
+                <option value=""disabled selected>Chose the closest option</option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <h3>Question 9</h3>
+            <h4>I prefer liquor to beer</h4>
+            <select class="chosen-select" id="q9">
+                <option value=""disabled selected>Chose the closest option</option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <h3>Question 10</h3>
+            <h4>I prefer dogs to cats</h4>
+            <select class="chosen-select" id="q10">
+                <option value=""disabled selected>Chose the closest option</option>
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit" style="padding:10px;"><i class="fa fa-check-circle" aria-hidden="true"></i> Submit</button>
+
+        <footer class="footer">
+            <div class="container">
+                <p><a href="/api/friends">API Friends List</a> | <a
+                        href="https://github.com/kupharmd05/FriendFinder">GitHub Repo</a>
+            </div>
+        </footer>
+
+    </div>
+
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+$("#submit").on("click", function(event){
+    event.preventDefault();
+
+    newFriend = {
+        name: $("#name").val().trim(),
+        scores: [
+            $("#q1").val().trim(),
+            $("#q2").val().trim(),
+            $("#q3").val().trim(),
+            $("#q4").val().trim(),
+            $("#q5").val().trim(),
+            $("#q6").val().trim(),
+            $("#q7").val().trim(),
+            $("#q8").val().trim(),
+            $("#q9").val().trim(),
+            $("#q10").val().trim(),
+        ]
+    };
+    console.log(newFriend);
+
+    $.post("/api/friends", newFriend, function(data){
+    console.log(data);
+
+    $("#name").val("");
+    $("#q1").val("");
+    $("#q2").val("");
+    $("#q3").val("");
+    $("#q4").val("");
+    $("#q5").val("");
+    $("#q6").val("");
+    $("#q7").val("");
+    $("#q8").val("");
+    $("#q9").val("");
+    $("#q10").val("");
+})
+
+});
+
+
+
+</script>
