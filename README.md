@@ -11,5 +11,7 @@ Please click [here](https://stark-plateau-11540.herokuapp.com/)
 
 ## Install
 To install git clone https://github.com/kupharmd05/FriendFinder.git
+
 cd FriendFinder
+
 npm install
