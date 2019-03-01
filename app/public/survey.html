@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
 
 </head>
 
@@ -127,7 +127,7 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit" style="padding:10px;"><i
+        <button type="submit" class="btn btn-primary btn-lg btn-block mt-2" id="submit" style="padding:10px;"><i
                 class="fa fa-check-circle" aria-hidden="true"></i> Submit</button>
 
         <footer class="footer">
@@ -143,9 +143,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Your closest friend match</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <h3 id="match"></h3>
@@ -154,65 +154,61 @@
         </div>
     </div>
 
-   
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#submit").on("click", function (event) {
+                event.preventDefault();
+    
+                newFriend = {
+                    name: $("#name").val().trim(),
+                    scores: [
+                        $("#q1").val().trim(),
+                        $("#q2").val().trim(),
+                        $("#q3").val().trim(),
+                        $("#q4").val().trim(),
+                        $("#q5").val().trim(),
+                        $("#q6").val().trim(),
+                        $("#q7").val().trim(),
+                        $("#q8").val().trim(),
+                        $("#q9").val().trim(),
+                        $("#q10").val().trim(),
+                    ]
+                };
+                // console.log(newFriend);
+    
+                $.post("/api/friends", newFriend, function (data) {
+                    console.log(data);
+    
+                    $("#name").val("");
+                    $("#q1").val("");
+                    $("#q2").val("");
+                    $("#q3").val("");
+                    $("#q4").val("");
+                    $("#q5").val("");
+                    $("#q6").val("");
+                    $("#q7").val("");
+                    $("#q8").val("");
+                    $("#q9").val("");
+                    $("#q10").val("");
+    
+                    
+    
+                    $("#match").html("Your closest matching friend is " + data.friend.name);
+    
+                    $("#myModal").modal('show');
+    
+                });
+            });
+        })
+    
+    
+    </script>
 </body>
 
 </html>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#submit").on("click", function (event) {
-            event.preventDefault();
-
-            newFriend = {
-                name: $("#name").val().trim(),
-                scores: [
-                    $("#q1").val().trim(),
-                    $("#q2").val().trim(),
-                    $("#q3").val().trim(),
-                    $("#q4").val().trim(),
-                    $("#q5").val().trim(),
-                    $("#q6").val().trim(),
-                    $("#q7").val().trim(),
-                    $("#q8").val().trim(),
-                    $("#q9").val().trim(),
-                    $("#q10").val().trim(),
-                ]
-            };
-            // console.log(newFriend);
-
-            $.post("/api/friends", newFriend, function (data) {
-                console.log(data);
-
-                $("#name").val("");
-                $("#q1").val("");
-                $("#q2").val("");
-                $("#q3").val("");
-                $("#q4").val("");
-                $("#q5").val("");
-                $("#q6").val("");
-                $("#q7").val("");
-                $("#q8").val("");
-                $("#q9").val("");
-                $("#q10").val("");
-            
-            alert("Your closest matching friend is " + data.friend.name)
-            
-            $("#match").html("test");
-
-            $("#myModal").modal('show');
-            
-        });
-
-           
-
-
-
-        });
-    })
-
-
-</script>
