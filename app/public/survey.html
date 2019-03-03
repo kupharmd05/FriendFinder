@@ -163,7 +163,7 @@
         $(document).ready(function () {
             $("#submit").on("click", function (event) {
                 event.preventDefault();
-    
+
                 newFriend = {
                     name: $("#name").val().trim(),
                     scores: [
@@ -180,10 +180,11 @@
                     ]
                 };
                 // console.log(newFriend);
-    
+
                 $.post("/api/friends", newFriend, function (data) {
                     console.log(data);
-    
+                    $("#match").html("Your closest matching friend is " + data.name);
+
                     $("#name").val("");
                     $("#q1").val("");
                     $("#q2").val("");
@@ -195,20 +196,18 @@
                     $("#q8").val("");
                     $("#q9").val("");
                     $("#q10").val("");
-    
-                    
-    
-                    $("#match").html("Your closest matching friend is " + data.friend.name);
-    
+
+
+
+
                     $("#myModal").modal('show');
-    
+
                 });
             });
         })
-    
-    
+
+
     </script>
 </body>
 
 </html>
-

@@ -7,36 +7,43 @@ module.exports = function(app){
 
     app.post("/api/friends", function(req,res){
        
-        
+        let bestDiff = 41;
+        var bestIndex = 0;
 
         var user = req.body;
         var userScores = req.body.scores;
-        var match = [];
+        // var match = [];
         
-        var difference = 0;
-        var difference1 = 0;
-        var difference2 = 0;
-        for (var i = 0; i < userScores.length; i++){
+        console.log(userScores);
+        
+        // var difference = 0;
+        // var difference1 = 0;
+        // var difference2 = 0;
+        for (var i = 0; i < friends.length; i++){
+            diffArray=[];
+            for (var j=0; j<10;j++){
+                let diff = Math.abs(parseInt(userScores[j])-(friends[i].scores[j]));
+                diffArray.push(diff);
+                if (j ===9){
+                    let totalDiff = diffArray.reduce((acc,val)=> acc + val);
+                    if (totalDiff < bestDiff) {
+                        bestDiff = totalDiff;
+                        bestIndex = i;
+                    };
+                };
+            };
             
-            
-            difference += Math.abs(parseInt(userScores[i])- parseInt(friends[0].scores[i]))
-            difference1 += Math.abs(parseInt(userScores[i])- parseInt(friends[1].scores[i]))
-            difference2 += Math.abs(parseInt(userScores[i])- parseInt(friends[2].scores[i]))
-            
-            console.log(difference)
+            if (i === (friends.length -1)){
+                res.json(friends[bestIndex])
+                console.log(friends[bestIndex])
+            }
+     
             
         }
-        // console.log(difference, difference1, difference2);
-        match.push(difference,difference1,difference2);
-        // console.log(match)
-
-            
-        var indexOfMinValue = match.indexOf(Math.min(...match))
-        console.log(indexOfMinValue);
 
         friends.push(user);
 
-        res.json({friend: friends[indexOfMinValue]});
+       
     })
 }
 
